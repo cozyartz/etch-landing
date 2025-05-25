@@ -6,7 +6,9 @@ import "@fontsource-variable/inter";
 import "~/styles/index.css";
 
 const title = "EtchNFT — Roadmap";
-const description = "From phygital drops to protocol — our journey ahead.";
+const description =
+  "Our journey from phygital drops to a protocol. See what's launching soon and what’s next for EtchNFT.";
+const ogImage = "/etchlogo.png"; // adjust path if needed
 
 const roadmap = [
   {
@@ -58,7 +60,9 @@ const roadmap = [
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
-  <MetaHead {title} {description} />
+  <head>
+    <MetaHead {title} {description} image={ogImage} />
+  </head>
 
   <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white">
     <Header />
