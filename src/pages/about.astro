@@ -18,12 +18,9 @@ const description = "We're minting memories — permanent, crafted, cultural.";
 
     <main class="flex-grow px-6 py-24 text-center relative z-10">
       <!-- Animated Star -->
-      <img
-        src="/star.png"
-        alt="Decorative Star"
-        class="absolute right-8 top-12 w-40 opacity-10 animate-pulse pointer-events-none select-none"
-        style="z-index: 0;"
-      />
+      <img src={star.src}
+         alt="Star Background"
+         class="pointer-events-none fixed top-[-80px] right-[-80px] w-[500px] opacity-10 animate-spin-slow z-0" />
 
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-[#DB2777] mb-6">
         Why EtchNFT Exists
