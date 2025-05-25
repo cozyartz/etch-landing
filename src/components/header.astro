@@ -20,19 +20,13 @@ const isNotHome = Astro.url.pathname !== "/";
       <ul class="flex items-center gap-6 text-sm font-medium">
         {isNotHome && (
           <li>
-            <a
-              href="/"
-              class="hover:text-pink-400 hover:underline underline-offset-4 transition"
-            >
+            <a href="/" class="hover:text-pink-400 hover:underline underline-offset-4 transition">
               Home
             </a>
           </li>
         )}
         <li>
-          <a
-            href="/waitlist"
-            class="hover:text-pink-400 hover:underline underline-offset-4 transition"
-          >
+          <a href="/waitlist" class="hover:text-pink-400 hover:underline underline-offset-4 transition">
             Waitlist
           </a>
         </li>
@@ -53,9 +47,9 @@ const isNotHome = Astro.url.pathname !== "/";
     </button>
   </div>
 
-  <!-- Mobile Modal Menu -->
+  <!-- Mobile Modal Menu w/ Gradient -->
   <div id="menu-modal" class="modal hidden" aria-hidden="true">
-    <div class="fixed inset-0 z-50 bg-black px-8 py-6 text-white flex flex-col items-center justify-start">
+    <div class="fixed inset-0 z-50 bg-gradient-to-r from-[#311524] via-[#1B1A34] to-[#123738] px-8 py-6 text-white flex flex-col items-center justify-start">
       <header class="w-full flex justify-end mb-4">
         <button
           id="close-nav-button"
@@ -82,7 +76,6 @@ const isNotHome = Astro.url.pathname !== "/";
   </div>
 </header>
 
-<!-- Mobile Nav Toggle Script -->
 <script is:inline>
   const menuModal = document.getElementById("menu-modal");
   const openBtn = document.getElementById("open-nav-button");
