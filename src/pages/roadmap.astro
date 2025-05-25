@@ -6,9 +6,8 @@ import "@fontsource-variable/inter";
 import "~/styles/index.css";
 
 const title = "EtchNFT — Roadmap";
-const description =
-  "Our journey from phygital drops to a protocol. See what's launching soon and what’s next for EtchNFT.";
-const ogImage = "/etchlogo.png"; // adjust path if needed
+const description = "The future of physical+digital drops. See what’s coming from EtchNFT.";
+const ogImage = "/etchlogo.png";
 
 const roadmap = [
   {
@@ -79,7 +78,6 @@ const roadmap = [
     ],
   },
 ];
-
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
@@ -90,25 +88,27 @@ const roadmap = [
   <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white">
     <Header />
 
-    <main class="min-h-screen px-6 py-24">
-      <div class="text-center max-w-3xl mx-auto mb-20 fade-up">
-        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-white">
-          📍 Roadmap
+    <main class="min-h-screen px-6 py-24 space-y-24">
+      <!-- Hero -->
+      <section class="text-center max-w-3xl mx-auto fade-up">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6 text-white">
+          EtchNFT Roadmap
         </h1>
-        <p class="text-lg text-gray-400">
-          From our first phygital drops to a permanent mint protocol — here's where EtchNFT is headed.
+        <p class="text-lg text-gray-300">
+          We’re not just dropping collectibles. We’re building a protocol for permanent expression — physical, digital, and onchain.
         </p>
-      </div>
+      </section>
 
-      <div class="space-y-12 max-w-4xl mx-auto">
+      <!-- Timeline -->
+      <section class="space-y-14 max-w-4xl mx-auto">
         {roadmap.map(({ quarter, icon, items }, index) => (
           <div
             class="bg-gradient-to-r from-[#311524] via-[#1B1A34] to-[#123738] text-white/90 p-8 rounded-2xl backdrop-blur-md border border-white/10 shadow-xl fade-up"
             style={`animation-delay: ${100 + index * 100}ms; animation-fill-mode: both; animation-name: fadeUp; animation-duration: 0.6s; animation-timing-function: ease-out;`}
           >
-            <h3 class="text-2xl font-bold text-[#DB2777] mb-4 text-center">
+            <h2 class="text-2xl font-bold text-[#DB2777] mb-4 text-center">
               {icon} {quarter}
-            </h3>
+            </h2>
             <ul class="text-center text-gray-300 space-y-2 text-sm leading-relaxed">
               {items.map((item, i) => (
                 <li key={i}>• {item}</li>
@@ -116,7 +116,21 @@ const roadmap = [
             </ul>
           </div>
         ))}
-      </div>
+      </section>
+
+      <!-- Closing CTA -->
+      <section class="text-center max-w-2xl mx-auto fade-up">
+        <h2 class="text-3xl font-bold text-white mb-4">What’s Next?</h2>
+        <p class="text-gray-400 text-lg mb-6">
+          Our roadmap is just the start. We’re working with creators, devs, and collectors to make the most expressive phygital platform onchain.
+        </p>
+        <a
+          href="/waitlist"
+          class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-lg transition"
+        >
+          Join the Waitlist
+        </a>
+      </section>
     </main>
 
     <Footer />
@@ -135,6 +149,7 @@ const roadmap = [
 
       .fade-up {
         opacity: 0;
+        animation: fadeUp 0.6s ease-out both;
       }
     </style>
   </body>
