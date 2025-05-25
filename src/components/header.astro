@@ -47,9 +47,17 @@ const isNotHome = Astro.url.pathname !== "/";
     </button>
   </div>
 
-  <!-- Mobile Modal Menu w/ Gradient -->
-  <div id="menu-modal" class="modal hidden" aria-hidden="true">
-    <div class="fixed inset-0 z-50 bg-gradient-to-r from-[#311524] via-[#1B1A34] to-[#123738] px-8 py-6 text-white flex flex-col items-center justify-start">
+  <!-- Mobile Modal Menu -->
+  <div
+    id="menu-modal"
+    class="modal pointer-events-none fixed inset-0 z-50 flex items-start justify-center transform -translate-y-full opacity-0 transition duration-300"
+    aria-hidden="true"
+  >
+    <!-- Gradient background layer -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#311524] via-[#1B1A34] to-[#123738] opacity-95 z-[-1]"></div>
+
+    <!-- Modal content -->
+    <div class="w-full max-w-md mx-auto p-8 mt-20 text-white rounded-xl backdrop-blur-md shadow-2xl z-10">
       <header class="w-full flex justify-end mb-4">
         <button
           id="close-nav-button"
@@ -64,7 +72,7 @@ const isNotHome = Astro.url.pathname !== "/";
         </button>
       </header>
 
-      <img src="/etchlogo.png" alt="etchNFT logo" class="h-16 w-16 mb-6 object-contain" />
+      <img src="/etchlogo.png" alt="etchNFT logo" class="h-16 w-16 mb-6 object-contain mx-auto" />
 
       <nav class="space-y-4 text-lg text-center font-semibold">
         {isNotHome && (
@@ -76,29 +84,28 @@ const isNotHome = Astro.url.pathname !== "/";
   </div>
 </header>
 
+<!-- Toggle Animation Script -->
 <script is:inline>
   const menuModal = document.getElementById("menu-modal");
   const openBtn = document.getElementById("open-nav-button");
   const closeBtn = document.getElementById("close-nav-button");
 
-  if (openBtn && closeBtn && menuModal) {
-    openBtn.addEventListener("click", () => {
-      menuModal.classList.remove("hidden");
-      menuModal.classList.add("block");
-    });
+  const openMenu = () => {
+    menuModal.classList.remove("opacity-0", "-translate-y-full", "pointer-events-none");
+    menuModal.classList.add("opacity-100", "translate-y-0", "pointer-events-auto");
+  };
 
-    closeBtn.addEventListener("click", () => {
-      menuModal.classList.add("hidden");
-      menuModal.classList.remove("block");
-    });
+  const closeMenu = () => {
+    menuModal.classList.add("opacity-0", "-translate-y-full", "pointer-events-none");
+    menuModal.classList.remove("opacity-100", "translate-y-0", "pointer-events-auto");
+  };
 
-    menuModal.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        menuModal.classList.add("hidden");
-        menuModal.classList.remove("block");
-      });
-    });
-  }
+  openBtn?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+
+  menuModal?.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
 </script>
 
 <noscript>
