@@ -2,6 +2,7 @@
 import Header from "~/components/header.astro";
 import Footer from "~/components/footer.astro";
 import MetaHead from "~/components/meta-head.astro";
+import Starfield from "~/components/starfield.astro";
 import "@fontsource-variable/inter";
 import "~/styles/index.css";
 
@@ -16,6 +17,7 @@ const roadmap = [
       "Launch Waitlist + Backer Form",
       "Mint Flow MVP (testnet)",
       "Start inscription testing on Solana",
+      "Deploy etch.sol & identity NFTs",
     ],
   },
   {
@@ -25,24 +27,37 @@ const roadmap = [
       "First Phygital Drop Kits",
       "Launch T-shirt Press & Fulfillment",
       "On-chain Backer Dashboard",
+      "Integrate CF D1 for drop management",
     ],
   },
   {
     quarter: "Q4 2025",
     icon: "🌱",
     items: [
-      "EtchNFT IRL launch event",
-      "Custom Inscription UI",
-      "‘Memory Gallery’ Launch",
+      "EtchNFT IRL Launch Event (Detroit)",
+      "Drop #1 – Memory Capsules",
+      "Custom Inscription UI Launch",
+      "Open Drop SDK (Alpha)",
     ],
   },
   {
-    quarter: "Beyond",
+    quarter: "Q1 2026",
+    icon: "🧠",
+    items: [
+      "Backer Rewards NFT Distribution",
+      "Etch API for Minting",
+      "Launch Gallery Mode v2",
+      "Support SPL & EVM standards",
+    ],
+  },
+  {
+    quarter: "Q2 2026+",
     icon: "💡",
     items: [
-      "Open-source Drop Protocol",
       "Composable Phygital NFTs",
-      "Compressed Mint Support",
+      "Drop Protocol Goes Open Source",
+      "Multi-chain & Compressed Minting",
+      "Phygital + AI Collab Experiments",
     ],
   },
 ];
@@ -51,39 +66,36 @@ const roadmap = [
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
   <MetaHead {title} {description} />
 
-  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white">
+  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white overflow-x-hidden">
     <Header />
+    <Starfield />
 
-    <main class="min-h-screen px-6 py-24">
-      <div class="text-center max-w-3xl mx-auto mb-20 fade-up">
-        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-white">
+    <main class="relative z-10 px-6 pt-32 pb-48 max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-20 animate-fade-up">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-[#DB2777]">
           📍 Roadmap
         </h1>
         <p class="text-lg text-gray-400">
-          From our first phygital drops to a permanent mint protocol — here's where EtchNFT is headed.
+          From our first phygital drops to a permanent mint protocol — here’s where EtchNFT is headed.
         </p>
       </div>
 
-      <div class="relative">
-        <div class="absolute top-1/2 left-0 w-full h-1 bg-pink-900/20 z-0"></div>
-
-        <div class="relative z-10 flex overflow-x-auto snap-x snap-mandatory gap-8 pb-10 no-scrollbar">
-          {roadmap.map(({ quarter, icon, items }, index) => (
-            <div
-              class="snap-center shrink-0 w-[280px] md:w-[320px] bg-white/5 border border-white/10 rounded-xl backdrop-blur-md px-6 py-8 fade-up"
-              style={`animation-delay: ${100 + index * 100}ms; animation-fill-mode: both; animation-name: fadeUp; animation-duration: 0.6s; animation-timing-function: ease-out;`}
-            >
-              <h3 class="text-pink-500 font-semibold text-xl mb-2">
-                {icon} {quarter}
-              </h3>
-              <ul class="text-gray-300 text-sm leading-relaxed space-y-2">
-                {items.map((item, i) => (
-                  <li key={i}>• {item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+      <div class="space-y-12">
+        {roadmap.map(({ quarter, icon, items }, index) => (
+          <div
+            class="bg-gradient-to-br from-white/10 to-[#1f1f1f] border border-white/10 rounded-xl p-6 md:p-8 shadow-xl animate-fade-up"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <h3 class="text-2xl font-semibold mb-4 text-[#7F73F7]">
+              {icon} {quarter}
+            </h3>
+            <ul class="text-gray-300 text-sm md:text-base space-y-2 pl-4 list-disc marker:text-[#41C6BB]">
+              {items.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </main>
 
@@ -101,8 +113,8 @@ const roadmap = [
         }
       }
 
-      .fade-up {
-        opacity: 0;
+      .animate-fade-up {
+        animation: fadeUp 0.6s ease-out both;
       }
     </style>
   </body>
