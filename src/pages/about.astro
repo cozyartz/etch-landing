@@ -17,14 +17,15 @@ const description = "Why we’re here. What we believe. What we’re building.";
     <Header />
     <Starfield />
 
-    <!-- Floating glowing star -->
+    <!-- Floating Star -->
     <img
       src="/star.png"
       alt="star"
-      class="absolute top-10 right-10 w-36 opacity-20 z-10 pointer-events-none animate-float"
+      class="absolute top-10 right-10 w-36 opacity-30 z-10 pointer-events-none animate-float"
     />
 
-    <main class="relative z-20 px-6 py-32 max-w-5xl mx-auto text-center">
+    <main class="relative z-20 px-6 pt-32 pb-48 max-w-6xl mx-auto text-center">
+      <!-- Headline -->
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-[#DB2777] mb-6">
         Why EtchNFT Exists
       </h1>
@@ -55,11 +56,36 @@ const description = "Why we’re here. What we believe. What we’re building.";
         </div>
       </section>
 
-      <!-- Quote -->
+      <!-- Community Quote -->
       <blockquote class="italic text-pink-500 text-lg mb-20">
         “We’re not just building a product. We’re building a ritual.”
         <footer class="text-white/50 mt-2">— Cozyartz / EtchNFT Core</footer>
       </blockquote>
+
+      <!-- Supporter Tiers -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-10 text-left text-sm mb-24">
+        <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-md">
+          <h4 class="text-[#DB2777] font-semibold mb-2">👑 OG Collectors</h4>
+          <p class="text-gray-400">First 10 wallets to back the project — forever etched into Drop #0.</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-md">
+          <h4 class="text-[#7F73F7] font-semibold mb-2">🦄 Founding Members</h4>
+          <p class="text-gray-400">Early adopters who helped us test, share, and spread the mint gospel.</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-6 shadow-md">
+          <h4 class="text-[#41C6BB] font-semibold mb-2">🪩 Backers & Builders</h4>
+          <p class="text-gray-400">Anyone who’s supported us — through ideas, feedback, or ETH.</p>
+        </div>
+      </section>
+
+      <!-- Highlight Bar -->
+      <section class="bg-gradient-to-r from-[#DB2777]/20 via-[#7F73F7]/20 to-[#41C6BB]/20 rounded-xl px-6 py-8 mb-20">
+        <h2 class="text-xl font-semibold text-white mb-2">Etch is just getting started.</h2>
+        <p class="text-sm text-gray-400 max-w-2xl mx-auto">
+          This is more than a drop. It's a foundation — for permanent memory artifacts, for on-chain identity,
+          for collectibles that mean something beyond speculation.
+        </p>
+      </section>
 
       <!-- CTA Button -->
       <div class="text-center">
@@ -76,23 +102,14 @@ const description = "Why we’re here. What we believe. What we’re building.";
 
     <style>
       @keyframes float {
-        0% {
-          transform: translateY(0px) rotate(0deg);
-          opacity: 0.15;
-        }
-        50% {
-          transform: translateY(-10px) rotate(3deg);
-          opacity: 0.3;
-        }
-        100% {
-          transform: translateY(0px) rotate(0deg);
-          opacity: 0.15;
-        }
+        0% { transform: translateY(0px) rotate(0deg); opacity: 0.15; }
+        50% { transform: translateY(-12px) rotate(3deg); opacity: 0.3; }
+        100% { transform: translateY(0px) rotate(0deg); opacity: 0.15; }
       }
 
       .animate-float {
         animation: float 6s ease-in-out infinite;
-        filter: drop-shadow(0 0 12px rgba(127, 115, 247, 0.35));
+        filter: drop-shadow(0 0 14px rgba(127, 115, 247, 0.35));
       }
     </style>
   </body>
