@@ -4,68 +4,65 @@ import Footer from "~/components/footer.astro";
 import MetaHead from "~/components/meta-head.astro";
 import "@fontsource-variable/inter";
 import "~/styles/index.css";
+import star from "../assets/star.png";
 
 const title = "Why EtchNFT Exists";
-const description = "The mission behind the chain. Real moments. Real permanence. Real craft.";
+const description = "A message. A moment. A ritual. Etched permanently — physically and digitally.";
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
   <MetaHead {title} {description} />
-
   <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white relative overflow-hidden">
+
     <Header />
 
-    <!-- ✨ Animated Background Element -->
-    <img src="/star.png" alt="" aria-hidden="true"
-      class="absolute top-0 left-1/2 -translate-x-1/2 opacity-10 w-[500px] animate-spin-slow pointer-events-none z-0" />
+    <!-- ✨ Star background animation -->
+    <img src={star.src}
+         alt="Star Background"
+         class="pointer-events-none fixed top-[-80px] right-[-80px] w-[500px] opacity-10 animate-spin-slow z-0" />
 
-    <main class="relative z-10 px-6 py-24 text-center max-w-4xl mx-auto">
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-[#DB2777] drop-shadow-sm">
+    <main class="relative z-10 px-6 py-32 text-center max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-bold text-[#DB2777] mb-6">
         Why EtchNFT Exists
       </h1>
-      <p class="text-lg text-gray-300 mb-12 leading-relaxed">
-        We started EtchNFT to capture something <span class="text-[#41C6BB] font-medium">real</span>. 
-        A moment. A message. A memory — 
-        <span class="text-[#7F73F7] font-medium">minted permanently</span> and wrapped in a piece of culture you can actually hold.
+
+      <p class="text-lg text-gray-300 leading-relaxed mb-12">
+        We started EtchNFT to capture something <span class="text-[#41C6BB]">real</span>. A message. A memory — 
+        <span class="text-[#7F73F7]">minted permanently</span> and wrapped in culture you can hold.
       </p>
 
-      <section class="grid sm:grid-cols-2 md:grid-cols-3 gap-10 text-left text-sm text-gray-300">
+      <!-- 🔥 Value Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-left text-sm text-gray-300 mb-16">
         <div>
-          <h3 class="text-[#DB2777] font-semibold text-base mb-2">🪙 On-Chain > Cloud</h3>
+          <h3 class="text-[#DB2777] font-semibold mb-2">🧾 On-Chain > Cloud</h3>
           <p>When it matters, it should be permanent. Our inscriptions live on public ledgers — not private servers.</p>
         </div>
         <div>
-          <h3 class="text-[#41C6BB] font-semibold text-base mb-2">⚒️ Craft > Mass</h3>
-          <p>Each drop is limited. Every one pressed, printed, etched, or assembled by real hands.</p>
+          <h3 class="text-[#41C6BB] font-semibold mb-2">🛠 Craft > Mass</h3>
+          <p>Each drop is handcrafted, pressed, printed, etched, or assembled by real hands. One at a time.</p>
         </div>
         <div>
-          <h3 class="text-[#7F73F7] font-semibold text-base mb-2">🎨 Expression > Speculation</h3>
-          <p>This isn’t about flipping. It’s about making artifacts that actually mean something.</p>
+          <h3 class="text-[#7F73F7] font-semibold mb-2">💡 Expression > Speculation</h3>
+          <p>We’re not chasing flips. We’re minting meaning — making permanent artifacts that matter.</p>
         </div>
-      </section>
+      </div>
 
-      <blockquote class="mt-16 text-lg italic text-[#DB2777]">
+      <!-- ✍️ Quote -->
+      <blockquote class="text-pink-400 italic text-lg md:text-xl">
         “We're not just building a product. We're building a ritual.”
+        <footer class="text-sm mt-3 text-white/60">— Cozyartz / EtchNFT Core</footer>
       </blockquote>
-      <p class="text-xs text-white/50 mt-2">— Cozyartz / EtchNFT Core</p>
     </main>
 
     <Footer />
 
     <style>
-      @keyframes spin-slow {
+      .animate-spin-slow {
+        animation: spin 60s linear infinite;
+      }
+      @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
-      }
-
-      .animate-spin-slow {
-        animation: spin-slow 120s linear infinite;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .animate-spin-slow {
-          animation: none;
-        }
       }
     </style>
   </body>
