@@ -33,21 +33,21 @@ const isNotHome = Astro.url.pathname !== "/";
       </ul>
     </nav>
 
-    <!-- Mobile Star Icon Menu Button -->
+    <!-- Mobile Star Icon Button -->
     <button
       id="open-nav-button"
       type="button"
-      class="sm:hidden inline-flex items-center justify-center p-1 rounded-md border border-white/20 hover:bg-pink-600 transition"
+      class="sm:hidden inline-flex items-center justify-center p-1 rounded-md border border-white/20 glow-button transition"
       aria-label="Open navigation"
     >
       <img src="/star.png" alt="Open menu" class="h-8 w-8 object-contain" />
     </button>
   </div>
 
-  <!-- Mobile Modal Menu with Gradient -->
+  <!-- Mobile Modal Menu w/ Gradient -->
   <div
     id="menu-modal"
-    class="modal pointer-events-none fixed inset-0 z-50 flex items-start justify-center transition-transform transform -translate-y-full opacity-0 duration-300"
+    class="modal pointer-events-none fixed inset-0 z-50 flex items-start justify-center transition-transform transform -translate-y-full opacity-0 duration-300 sm:hidden"
     aria-hidden="true"
   >
     <div class="bg-gradient-to-r from-[#311524] via-[#1B1A34] to-[#123738] w-full max-w-md mx-auto p-8 mt-20 text-white rounded-xl shadow-2xl backdrop-blur-md">
@@ -77,7 +77,7 @@ const isNotHome = Astro.url.pathname !== "/";
   </div>
 </header>
 
-<!-- Mobile Nav Toggle Script -->
+<!-- Mobile Menu Logic -->
 <script is:inline>
   const menuModal = document.getElementById("menu-modal");
   const openBtn = document.getElementById("open-nav-button");
@@ -108,3 +108,19 @@ const isNotHome = Astro.url.pathname !== "/";
     }
   </style>
 </noscript>
+
+<style>
+  .glow-button {
+    box-shadow: 0 0 12px rgba(127, 115, 247, 0.5), 0 0 24px rgba(219, 39, 119, 0.5);
+    animation: pulseGlow 2s infinite ease-in-out;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 12px rgba(127, 115, 247, 0.5), 0 0 24px rgba(219, 39, 119, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 18px rgba(127, 115, 247, 0.8), 0 0 36px rgba(219, 39, 119, 0.8);
+    }
+  }
+</style>
