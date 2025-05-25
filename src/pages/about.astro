@@ -4,66 +4,62 @@ import Footer from "~/components/footer.astro";
 import MetaHead from "~/components/meta-head.astro";
 import "@fontsource-variable/inter";
 import "~/styles/index.css";
-import star from "../assets/star.png";
 
 const title = "Why EtchNFT Exists";
-const description = "A message. A moment. A ritual. Etched permanently — physically and digitally.";
+const description = "We're minting memories — permanent, crafted, cultural.";
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
   <MetaHead {title} {description} />
-  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white relative overflow-hidden">
+
+  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white flex flex-col min-h-screen relative overflow-x-hidden">
 
     <Header />
 
-    <!-- ✨ Star background animation -->
-    <img src={star.src}
-         alt="Star Background"
-         class="pointer-events-none fixed top-[-80px] right-[-80px] w-[500px] opacity-10 animate-spin-slow z-0" />
+    <main class="flex-grow px-6 py-24 text-center relative z-10">
+      <!-- Animated Star -->
+      <img
+        src="/star.png"
+        alt="Decorative Star"
+        class="absolute right-8 top-12 w-40 opacity-10 animate-pulse pointer-events-none select-none"
+        style="z-index: 0;"
+      />
 
-    <main class="relative z-10 px-6 py-32 text-center max-w-4xl mx-auto">
-      <h1 class="text-4xl md:text-6xl font-bold text-[#DB2777] mb-6">
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-[#DB2777] mb-6">
         Why EtchNFT Exists
       </h1>
-
-      <p class="text-lg text-gray-300 leading-relaxed mb-12">
-        We started EtchNFT to capture something <span class="text-[#41C6BB]">real</span>. A message. A memory — 
-        <span class="text-[#7F73F7]">minted permanently</span> and wrapped in culture you can hold.
+      <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12">
+        We started EtchNFT to capture something real. A message. A moment.
+        A memory — <span class="text-[#41C6BB]">minted permanently</span> and wrapped in culture you can hold.
       </p>
 
-      <!-- 🔥 Value Columns -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-left text-sm text-gray-300 mb-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto text-left relative z-10">
         <div>
-          <h3 class="text-[#DB2777] font-semibold mb-2">🧾 On-Chain > Cloud</h3>
-          <p>When it matters, it should be permanent. Our inscriptions live on public ledgers — not private servers.</p>
+          <h3 class="text-[#DB2777] font-semibold text-lg mb-1">🧱 On-Chain > Cloud</h3>
+          <p class="text-sm text-gray-400">
+            When it matters, it should be permanent. Our inscriptions live on public ledgers — not private servers.
+          </p>
         </div>
         <div>
-          <h3 class="text-[#41C6BB] font-semibold mb-2">🛠 Craft > Mass</h3>
-          <p>Each drop is handcrafted, pressed, printed, etched, or assembled by real hands. One at a time.</p>
+          <h3 class="text-[#41C6BB] font-semibold text-lg mb-1">⚒️ Craft > Mass</h3>
+          <p class="text-sm text-gray-400">
+            Each drop is handcrafted, pressed, printed, etched, or assembled by real hands. One at a time.
+          </p>
         </div>
         <div>
-          <h3 class="text-[#7F73F7] font-semibold mb-2">💡 Expression > Speculation</h3>
-          <p>We’re not chasing flips. We’re minting meaning — making permanent artifacts that matter.</p>
+          <h3 class="text-[#7F73F7] font-semibold text-lg mb-1">💡 Expression > Speculation</h3>
+          <p class="text-sm text-gray-400">
+            We’re not chasing flips. We’re minting meaning — making permanent artifacts that matter.
+          </p>
         </div>
       </div>
 
-      <!-- ✍️ Quote -->
-      <blockquote class="text-pink-400 italic text-lg md:text-xl">
-        “We're not just building a product. We're building a ritual.”
-        <footer class="text-sm mt-3 text-white/60">— Cozyartz / EtchNFT Core</footer>
+      <blockquote class="italic text-pink-400 mt-20 text-lg max-w-xl mx-auto relative z-10">
+        “We’re not just building a product. We’re building a ritual.”<br/>
+        <span class="block text-sm not-italic text-gray-500 mt-2">— Cozyartz / EtchNFT Core</span>
       </blockquote>
     </main>
 
     <Footer />
-
-    <style>
-      .animate-spin-slow {
-        animation: spin 60s linear infinite;
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    </style>
   </body>
 </html>
