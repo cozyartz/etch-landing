@@ -4,31 +4,37 @@ interface Env {
   RATE_LIMIT_KV: KVNamespace;
 }
 
-const RATE_LIMIT_MAX = 10; // Max requests per 10 min
-const RATE_LIMIT_WINDOW = 600; // Seconds
+const RATE_LIMIT_MAX = 10; // Max requests per IP
+const RATE_LIMIT_WINDOW = 600; // 10 minutes (seconds)
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    const method = request.method;
+    const path = url.pathname;
 
-    // === 1. Rate Limit (by IP) for POSTs
-    const ip = request.headers.get("CF-Connecting-IP") || "unknown";
-    const rateKey = `rate:${ip}`;
-    if (request.method === "POST" && url.pathname.startsWith("/api/")) {
-      const count = parseInt(await env.RATE_LIMIT_KV.get(rateKey) || "0");
-      if (count >= RATE_LIMIT_MAX) {
+    // === 1. Rate Limiting for POST requests under /api/*
+    if (method === "POST" && path.startsWith("/api/")) {
+      const ip = request.headers.get("CF-Connecting-IP") || "unknown";
+      const key = `rate:${ip}`;
+      const current = parseInt(await env.RATE_LIMIT_KV.get(key) || "0");
+
+      if (current >= RATE_LIMIT_MAX) {
         return new Response("⚠️ Rate limit exceeded", { status: 429 });
       }
-      ctx.waitUntil(env.RATE_LIMIT_KV.put(rateKey, (count + 1).toString(), { expirationTtl: RATE_LIMIT_WINDOW }));
+
+      ctx.waitUntil(
+        env.RATE_LIMIT_KV.put(key, (current + 1).toString(), { expirationTtl: RATE_LIMIT_WINDOW })
+      );
     }
 
-    // === 2. Simple redirect shortcut
-    if (url.pathname === "/form1") {
+    // === 2. Shortcut: /form1 redirect to hosted form
+    if (path === "/form1") {
       return Response.redirect("https://forms.cozyartz.com/zxji2h", 302);
     }
 
-    // === 3. Email verification click
-    if (url.pathname === "/verify" && request.method === "GET") {
+    // === 3. Email Verification
+    if (path === "/verify" && method === "GET") {
       const token = url.searchParams.get("token");
       if (!token) return new Response("❌ Invalid token", { status: 400 });
 
@@ -41,29 +47,27 @@ export default {
           headers: { "Content-Type": "text/html" }
         });
       } else {
-        return new Response("❌ Token not found or already used.", { status: 404 });
+        return new Response("❌ Token not found or already verified.", { status: 404 });
       }
     }
 
-    // === 4. Formaloo Sync POST
-    if (url.pathname === "/api/formaloo-sync" && request.method === "POST") {
+    // === 4. Formaloo Webhook POST Handler
+    if (path === "/api/formaloo-sync" && method === "POST") {
       const token = request.headers.get("x-formaloo-token");
       if (token !== env.FORMALOO_TOKEN) {
         return new Response("❌ Invalid token", { status: 401 });
       }
 
       try {
-        const data = await request.json();
-
-        const { email, wallet, name, tshirt_size, form_tag = "default" } = data;
+        const { email, wallet, name, tshirt_size, form_tag = "default" } = await request.json();
         const id = crypto.randomUUID();
 
         await env.etchnft.prepare(
           `INSERT INTO waitlist_signups (id, email, wallet, name, tshirt_size, form_tag) VALUES (?, ?, ?, ?, ?, ?)`
         ).bind(id, email, wallet, name, tshirt_size, form_tag).run();
 
-        // Simulated: Send verification email w/ token = id
-        console.log(`[EMAIL] Would send verification to ${email} with link: https://etchnft.com/verify?token=${id}`);
+        // Simulated: Send verification email
+        console.log(`[EMAIL] Send verify link: https://etchnft.com/verify?token=${id}`);
 
         return new Response("✅ Synced", { status: 200 });
       } catch (err) {
@@ -72,13 +76,14 @@ export default {
       }
     }
 
-    // === 5. API for client-side page to load supporters
-    if (url.pathname === "/api/supporters" && request.method === "GET") {
+    // === 5. Public API — Fetch verified supporters
+    if (path === "/api/supporters" && method === "GET") {
       try {
         const result = await env.etchnft.prepare(
           `SELECT wallet, ens, name, tshirt_size, created_at FROM waitlist_signups
            WHERE verified = 1
-           ORDER BY created_at DESC LIMIT 100`
+           ORDER BY created_at DESC
+           LIMIT 100`
         ).all();
 
         return new Response(JSON.stringify(result.results), {
@@ -90,7 +95,7 @@ export default {
       }
     }
 
-    // === Default
+    // === Default Fallback
     return new Response("EtchNFT Worker API — Online", {
       status: 200,
       headers: { "Content-Type": "text/plain" }

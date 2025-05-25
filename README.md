@@ -27,17 +27,6 @@ This repo powers the landing site at [etchnft.com](https://etchnft.com) and incl
 
 ---
 
-## 🧩 Tech Stack
-
-- 🧑‍🚀 [Astro](https://astro.build) with partial islands
-- 💨 [Tailwind CSS](https://tailwindcss.com) (custom theme + dark mode)
-- ☁️ [Cloudflare Pages](https://pages.cloudflare.com) for frontend
-- 🔧 [Cloudflare Workers](https://developers.cloudflare.com/workers/) for backend/API
-- 🧬 [D1](https://developers.cloudflare.com/d1/) for SQL database
-- ⚡ [KV](https://developers.cloudflare.com/kv/) for rate limiting and caching
-
----
-
 ## 🎨 Features
 
 - 💅 Brand theme: `#DB2777`, `#7F73F7`, `#41C6BB`
@@ -53,24 +42,61 @@ This repo powers the landing site at [etchnft.com](https://etchnft.com) and incl
 
 | Command                | Action                                            |
 | :---------------------| :-------------------------------------------------|
-| `npm install`         | Install dependencies                              |
-| `npm run dev`         | Start local dev server at `localhost:4321`        |
-| `npm run build`       | Build site to `./dist/` for Cloudflare Pages      |
-| `npm run preview`     | Preview your production build locally             |
-| `npm run format`      | Format with Prettier + Tailwind sort              |
+| `pnpm install`         | Install dependencies                              |
+| `pnpm run dev`         | Start local dev server at `localhost:4321`        |
+| `pnpm run build`       | Build site to `./dist/` for Cloudflare Pages      |
+| `pnpm run preview`     | Preview your production build locally             |
+| `pnpm run format`      | Format with Prettier + Tailwind sort              |
 | `wrangler dev`        | Run Worker + API locally                          |
 | `wrangler publish`    | Deploy Worker to production                       |
 
 ---
+# ✨ etchNFT — Phygital Minting Platform
 
-## 📡 API Endpoints
+**etchNFT** lets you mint memories — on-chain collectibles you can actually hold. We combine physical relics (like tees, plaques, and acrylics) with digital permanence. No crypto wallet required. Built with 💖 by [Cozyartz Media](https://www.linkedin.com/company/cozyartzmediagroup).
 
-All handled by the Cloudflare Worker:
+![EtchNFT Screenshot](./screenshots.jpg)
 
-- `/form1` → redirects to waitlist form
-- `/api/formaloo-sync` → webhook POST receiver
-- `/api/supporters` → public supporter data
-- `/verify?token=...` → email verification route
+---
+
+## 🔥 What’s Inside
+
+- ⚡️ **Astro** for lightning-fast static rendering
+- 🎨 **Tailwind CSS** custom theming with `theme.css`
+- 🧠 **Cloudflare D1** database integration for:
+  - Waitlist signups
+  - Supporter dashboard
+  - Order records
+- 🌐 **Worker API** for webhook syncing (Formaloo-ready)
+- 🎁 Fully responsive & dark-mode by default
+- 🎉 Starfield background & animated visuals
+- 📦 GitHub → Cloudflare Pages deployment
+- 🛠️ Built-in CLI dev + build scripts
+
+---
+
+## 📁 Pages & Features
+
+| Page            | Purpose                                               |
+|-----------------|-------------------------------------------------------|
+| `/`             | Splash landing w/ motion graphics and CTA            |
+| `/waitlist`     | Embedded form for early access                       |
+| `/about`        | Brand principles and "Why EtchNFT Exists"            |
+| `/roadmap`      | Horizontally scrollable roadmap with emojis + theme  |
+| `/supporters`   | Live list of backers synced via Cloudflare D1        |
+| `/terms`        | Legal page w/ styled content                         |
+| `/api/*`        | Worker endpoints for syncing and fetching data       |
+
+---
+
+## ⚙️ Local Setup
+
+```bash
+git clone https://github.com/cozyartz/etch-landing.git
+cd etch-landing
+pnpm install          # or npm install
+pnpm dev              # local dev server at http://localhost:4321
+
 
 ---
 
