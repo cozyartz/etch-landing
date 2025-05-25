@@ -5,80 +5,68 @@ import MetaHead from "~/components/meta-head.astro";
 import "@fontsource-variable/inter";
 import "~/styles/index.css";
 
-const title = "EtchNFT — About";
-const description = "Why we’re here. What we believe. What we’re building.";
+const title = "Why EtchNFT Exists";
+const description = "The mission behind the chain. Real moments. Real permanence. Real craft.";
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
   <MetaHead {title} {description} />
 
-  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white">
+  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white relative overflow-hidden">
     <Header />
 
-    <main class="min-h-screen px-6 py-24">
-      <section class="max-w-4xl mx-auto text-center space-y-10">
-        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white fade-up">
-          Why EtchNFT Exists
-        </h1>
-        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto fade-up delay-100">
-          We started EtchNFT to capture something real. A moment. A message. A memory — minted permanently, and wrapped in a piece of culture you can actually hold.
-        </p>
-      </section>
+    <!-- ✨ Animated Background Element -->
+    <img src="/star.png" alt="" aria-hidden="true"
+      class="absolute top-0 left-1/2 -translate-x-1/2 opacity-10 w-[500px] animate-spin-slow pointer-events-none z-0" />
 
-      <section class="grid sm:grid-cols-3 gap-10 mt-20 max-w-5xl mx-auto text-left">
-        <div class="fade-up delay-200">
-          <h3 class="text-pink-500 font-semibold mb-2 text-lg">🧱 On-Chain > Cloud</h3>
-          <p class="text-gray-300 text-sm">
-            When it matters, it should be permanent. Our inscriptions live on public ledgers — not private servers.
-          </p>
+    <main class="relative z-10 px-6 py-24 text-center max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-[#DB2777] drop-shadow-sm">
+        Why EtchNFT Exists
+      </h1>
+      <p class="text-lg text-gray-300 mb-12 leading-relaxed">
+        We started EtchNFT to capture something <span class="text-[#41C6BB] font-medium">real</span>. 
+        A moment. A message. A memory — 
+        <span class="text-[#7F73F7] font-medium">minted permanently</span> and wrapped in a piece of culture you can actually hold.
+      </p>
+
+      <section class="grid sm:grid-cols-2 md:grid-cols-3 gap-10 text-left text-sm text-gray-300">
+        <div>
+          <h3 class="text-[#DB2777] font-semibold text-base mb-2">🪙 On-Chain > Cloud</h3>
+          <p>When it matters, it should be permanent. Our inscriptions live on public ledgers — not private servers.</p>
         </div>
-        <div class="fade-up delay-300">
-          <h3 class="text-pink-500 font-semibold mb-2 text-lg">🛠 Craft > Mass</h3>
-          <p class="text-gray-300 text-sm">
-            Each drop is limited. Every one pressed, printed, etched, or assembled by real hands.
-          </p>
+        <div>
+          <h3 class="text-[#41C6BB] font-semibold text-base mb-2">⚒️ Craft > Mass</h3>
+          <p>Each drop is limited. Every one pressed, printed, etched, or assembled by real hands.</p>
         </div>
-        <div class="fade-up delay-400">
-          <h3 class="text-pink-500 font-semibold mb-2 text-lg">🔮 Expression > Speculation</h3>
-          <p class="text-gray-300 text-sm">
-            This isn’t about flipping. It’s about making artifacts that actually mean something.
-          </p>
+        <div>
+          <h3 class="text-[#7F73F7] font-semibold text-base mb-2">🎨 Expression > Speculation</h3>
+          <p>This isn’t about flipping. It’s about making artifacts that actually mean something.</p>
         </div>
       </section>
 
-      <section class="mt-24 max-w-xl mx-auto text-center fade-up delay-500">
-        <blockquote class="italic text-pink-300 text-base md:text-lg">
-          "We’re not just building a product. We’re building a ritual."
-        </blockquote>
-        <p class="text-sm text-gray-500 mt-2">— Cozyartz / EtchNFT Core</p>
-      </section>
+      <blockquote class="mt-16 text-lg italic text-[#DB2777]">
+        “We're not just building a product. We're building a ritual.”
+      </blockquote>
+      <p class="text-xs text-white/50 mt-2">— Cozyartz / EtchNFT Core</p>
     </main>
 
     <Footer />
 
     <style>
-      @keyframes fadeUp {
-        0% {
-          opacity: 0;
-          transform: translateY(24px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      @keyframes spin-slow {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
 
-      .fade-up {
-        opacity: 0;
-        transform: translateY(24px);
-        animation: fadeUp 0.6s ease-out forwards;
+      .animate-spin-slow {
+        animation: spin-slow 120s linear infinite;
       }
 
-      .delay-100 { animation-delay: 0.1s; }
-      .delay-200 { animation-delay: 0.2s; }
-      .delay-300 { animation-delay: 0.3s; }
-      .delay-400 { animation-delay: 0.4s; }
-      .delay-500 { animation-delay: 0.5s; }
+      @media (prefers-reduced-motion: reduce) {
+        .animate-spin-slow {
+          animation: none;
+        }
+      }
     </style>
   </body>
 </html>
