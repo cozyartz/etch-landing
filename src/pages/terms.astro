@@ -1,0 +1,61 @@
+---
+import Header from "~/components/header.astro";
+import Footer from "~/components/footer.astro";
+import MetaHead from "~/components/meta-head.astro";
+import "@fontsource-variable/inter";
+import "~/styles/index.css";
+
+const title = "EtchNFT — Terms & Conditions";
+const description = "Legal terms governing use of the EtchNFT platform by Cozyartz Media Group.";
+
+const sections = [
+  ['01 — Acceptance of Terms', 'By using etchNFT, you agree to these Terms. If you do not agree, do not use the site or services.'],
+  ['02 — Eligibility', 'You must be 18+ or the age of majority in your jurisdiction. You’re responsible for following local laws.'],
+  ['03 — Products', 'etchNFT offers custom collectibles linked to digital records. Availability, pricing, and specs may change without notice. All sales are final unless stated otherwise.'],
+  ['04 — Intellectual Property', 'All designs, code, branding, and copy are the property of Cozyartz Media Group. No reproduction is permitted without written permission.'],
+  ['05 — Conduct', 'Do not abuse the platform or violate any laws. We reserve the right to block any user or address at our discretion.'],
+  ['06 — Payments', 'Payments are processed by third parties. We don’t store your financial data. You agree to pay for anything you purchase.'],
+  ['07 — Liability', 'All items and services are provided "as is". Cozyartz Media Group is not liable for any direct or indirect losses.'],
+  ['08 — Indemnity', 'You agree to indemnify and hold harmless Cozyartz Media Group against any third-party claims related to your use of the service.'],
+  ['09 — Jurisdiction', 'These terms are governed by Michigan law. All disputes will be handled in Michigan courts.'],
+  ['10 — Updates', 'Terms may be updated at any time. Continued use of the service means you accept the updated terms.'],
+  ['11 — Contact', 'Questions? Email us at <a href="mailto:support@cozyartzmedia.com" class="text-[#DB2777] hover:underline">support@cozyartzmedia.com</a>.']
+];
+---
+
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <MetaHead {title} {description} />
+
+  <body class="bg-black text-white selection:bg-[#DB2777] selection:text-white font-sans">
+    <Header />
+
+    <main class="relative px-6 py-24 bg-gradient-to-b from-black via-gray-900 to-black min-h-screen">
+      <div class="max-w-4xl mx-auto space-y-16">
+        {sections.map(([heading, body], i) => (
+          <div
+            class="opacity-0 translate-y-6 motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out"
+            style={`animation: fadeInUp 0.5s ease-out ${i * 120}ms forwards`}
+          >
+            <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-3 text-[#DB2777] drop-shadow-md">{heading}</h2>
+            <p class="text-base text-gray-300 leading-relaxed max-w-prose" set:html={body} />
+          </div>
+        ))}
+      </div>
+    </main>
+
+    <Footer />
+
+    <style>
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </body>
+</html>

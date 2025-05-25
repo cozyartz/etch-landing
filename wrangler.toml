@@ -1,0 +1,28 @@
+name = "etchnft"
+main = "src/index.ts"
+compatibility_date = "2025-05-24"
+compatibility_flags = ["nodejs_compat"]
+account_id = "51826042d6e31c694331efeb1be34123"
+
+# Environment variables (used for sync token verification)
+[vars]
+FORMALOO_TOKEN = "60caeb6c1668a3ce5739a8e70132f9e9"
+
+# D1 Database configuration
+[[d1_databases]]
+binding = "etchnft"
+database_name = "etchnft"
+database_id = "269db405-82b3-4a9d-851f-e33510373867"
+
+# KV Namespace for rate limiting
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "ca25799208024f8d8e0ef1f49d0eefec"
+
+# Optional route mappings for direct edge routing
+routes = [
+  { pattern = "etchnft.com/form1", zone_name = "etchnft.com" },
+  { pattern = "etchnft.com/api/formaloo-sync", zone_name = "etchnft.com" },
+  { pattern = "etchnft.com/api/supporters", zone_name = "etchnft.com" },
+  { pattern = "etchnft.com/verify", zone_name = "etchnft.com" }
+]

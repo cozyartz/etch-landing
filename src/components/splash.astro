@@ -1,45 +1,44 @@
 ---
 import { Image } from "astro:assets";
-import { Icon } from "astro-icon/components";
-import astronautImage from "~/assets/astronaut.png";
-import HeroImage from "~/components/hero-image.astro";
+import dollarImage from "~/assets/dollar.png";
 import Starfield from "~/components/starfield.astro";
-import GitHubCorner from "./github-corner.astro";
 
-const widths = [450, 800];
-const sizes = "(min-width: 640px) 42vw, 67vw";
+const widths = [600, 1000];
+const sizes = "(min-width: 640px) 48vw, 80vw";
 ---
 
-<section class="relative h-full bg-black">
+<section class="relative min-h-screen bg-black overflow-hidden">
   <Starfield />
-  <GitHubCorner />
-  <div id="splash-bg-fallback" class="absolute inset-0 hidden opacity-40">
-    <HeroImage />
-  </div>
-  <div class="relative grid h-full place-items-center sm:grid-cols-2">
-    <h2
-      class="flex flex-col items-center gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end"
-    >
-      <Icon name="logomark" class="size-20 text-white md:size-32" />
-      <div
-        class="gradient-text text-center font-extrabold tracking-tighter text-6xl md:text-8xl"
+
+  <div class="relative grid min-h-screen place-items-center px-6 py-24 sm:grid-cols-2">
+    <!-- Launch Text -->
+    <div class="flex flex-col gap-6 sm:justify-self-end text-center sm:text-left max-w-xl z-10">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white drop-shadow-xl">
+        The First Drops Are Coming
+      </h1>
+      <p class="text-lg text-gray-300 leading-relaxed">
+        Custom, on-chain collectibles you can hold in your hand. Plaques. Tees. Acrylic relics. Every piece comes etched and minted.
+      </p>
+      <p class="text-base text-gray-400 leading-relaxed">
+        We’re not selling NFTs. We’re minting memories — physical + digital. Each drop is limited-run, handcrafted, and permanently sealed on-chain.
+      </p>
+      <a
+        href="/waitlist"
+        class="inline-block w-fit rounded-full bg-pink-600 px-6 py-3 text-white font-semibold text-base hover:bg-pink-700 transition"
       >
-        Build fast
-        <br /> websites,
-        <br /> faster.
-      </div>
-    </h2>
-    <div
-      id="astronaut"
-      class="w-2/3 max-w-3xl self-start sm:w-10/12 sm:self-auto sm:justify-self-start"
-    >
+        Join the Waitlist →
+      </a>
+    </div>
+
+    <!-- Floating Etched Dollar Visual (LARGER) -->
+    <div id="floating-asset" class="w-full max-w-[600px] self-start sm:justify-self-start z-0">
       <Image
-        class="h-full w-full object-cover"
-        src={astronautImage}
+        class="h-full w-full object-contain"
+        src={dollarImage}
         widths={widths}
         sizes={sizes}
         loading="eager"
-        alt="A floating astronaut in a space suit"
+        alt="A floating etched dollar"
       />
     </div>
   </div>
@@ -47,7 +46,7 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
 
 <noscript>
   <style>
-    #splash-bg-fallback {
+    #floating-asset {
       display: block;
     }
   </style>
@@ -58,27 +57,22 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
     0% {
       transform: translate3d(0, 0, 0);
     }
-
     100% {
       transform: translate3d(0, 30px, 0);
     }
   }
 
-  #astronaut {
-    animation: float linear 2.5s infinite alternate;
+  #floating-asset {
+    animation: float 2.5s ease-in-out infinite alternate;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #astronaut {
-      @apply animate-none;
+    #floating-asset {
+      animation: none !important;
     }
 
     :global(#starfield) {
-      @apply hidden;
-    }
-
-    #splash-bg-fallback {
-      @apply block;
+      display: none;
     }
   }
 </style>

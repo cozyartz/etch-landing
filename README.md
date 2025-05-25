@@ -1,44 +1,88 @@
-# Astro Landing Page <picture><source media="(prefers-color-scheme: dark)" srcset="https://astro.build/assets/press/astro-icon-light.png"><source media="(prefers-color-scheme: light)" srcset="https://astro.build/assets/press/astro-icon-dark.png"><img align="right" valign="center" height="79" width="63" src="https://astro.build/assets/press/astro-icon-dark.png" alt="Astro logo" /></picture>
+# ✨ EtchNFT — Custom Phygital Drops
 
-> An Astro + Tailwind CSS example/template for landing pages.
+A modern Astro + Tailwind site for the **EtchNFT** platform — a hybrid of collectible culture and on-chain memory inscription.
 
 <div align="center">
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/small.svg)](https://astro.build)
+[![Powered by Cloudflare](https://img.shields.io/badge/Powered%20by-Cloudflare-orange?style=flat&logo=cloudflare)](https://cloudflare.com)
 
 </div>
 
-![Screenshots of Astro Landing Page](screenshots.jpg)
+![Screenshot of EtchNFT Landing](screenshots.jpg)
 
-## Features
+---
 
-- 💨 Tailwind CSS for styling
-- 🎨 Themeable
-  - CSS variables are defined in `src/styles/theme.css` and mapped to Tailwind classes (`tailwind.config.cjs`)
-- 🌙 Dark mode
-- 📱 Responsive (layout, images, typography)
-- ♿ Accessible (as measured by https://web.dev/measure/)
-- 🔎 SEO-enabled (as measured by https://web.dev/measure/)
-- 🔗 Open Graph tags for social media sharing
-- 💅 [Prettier](https://prettier.io/) setup for both [Astro](https://github.com/withastro/prettier-plugin-astro) and [Tailwind](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+## 🚀 What Is EtchNFT?
 
-## Commands
+**EtchNFT** lets you mint memories — physical and digital collectibles, permanently sealed on-chain. Think plaques, tees, and acrylic relics — all backed by real ownership and public proofs.
+
+This repo powers the landing site at [etchnft.com](https://etchnft.com) and includes:
+
+- 🌈 Hero splash & animated starfield
+- 🎟 Waitlist form powered by Cloudflare D1
+- 🏆 Supporters wall (API + UI)
+- 🗺 Roadmap display with motion
+- 📦 Built-in API routes via Workers
+
+---
+
+## 🧩 Tech Stack
+
+- 🧑‍🚀 [Astro](https://astro.build) with partial islands
+- 💨 [Tailwind CSS](https://tailwindcss.com) (custom theme + dark mode)
+- ☁️ [Cloudflare Pages](https://pages.cloudflare.com) for frontend
+- 🔧 [Cloudflare Workers](https://developers.cloudflare.com/workers/) for backend/API
+- 🧬 [D1](https://developers.cloudflare.com/d1/) for SQL database
+- ⚡ [KV](https://developers.cloudflare.com/kv/) for rate limiting and caching
+
+---
+
+## 🎨 Features
+
+- 💅 Brand theme: `#DB2777`, `#7F73F7`, `#41C6BB`
+- 🌓 Dark mode by default
+- ⚡ Animated roadmap + grid transitions
+- 🔍 SEO + Open Graph metadata
+- 🔐 Rate-limited Formaloo-compatible API
+- ✅ Email verification-ready endpoints
+
+---
+
+## 🛠️ Commands
 
 | Command                | Action                                            |
-| :--------------------- | :------------------------------------------------ |
-| `npm install`          | Install dependencies                              |
-| `npm run dev`          | Start local dev server at `localhost:4321`        |
-| `npm run build`        | Build your production site to `./dist/`           |
-| `npm run preview`      | Preview your build locally, before deploying      |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check`  |
-| `npm run astro --help` | Get help using the Astro CLI                      |
-| `npm run format`       | Format code with [Prettier](https://prettier.io/) |
-| `npm run clean`        | Remove `node_modules` and build output            |
+| :---------------------| :-------------------------------------------------|
+| `npm install`         | Install dependencies                              |
+| `npm run dev`         | Start local dev server at `localhost:4321`        |
+| `npm run build`       | Build site to `./dist/` for Cloudflare Pages      |
+| `npm run preview`     | Preview your production build locally             |
+| `npm run format`      | Format with Prettier + Tailwind sort              |
+| `wrangler dev`        | Run Worker + API locally                          |
+| `wrangler publish`    | Deploy Worker to production                       |
 
-## Credits
+---
 
-- astronaut image
-  - source: https://github.com/withastro/astro-og-image; note: this repo is not available anymore
-- moon image
-  - source: https://unsplash.com/@nasa
-- other than that, a lot of material (showcase data, copy) was taken from official Astro sources, in particular https://astro.build/blog/introducing-astro/ and https://github.com/withastro/astro.build
+## 📡 API Endpoints
+
+All handled by the Cloudflare Worker:
+
+- `/form1` → redirects to waitlist form
+- `/api/formaloo-sync` → webhook POST receiver
+- `/api/supporters` → public supporter data
+- `/verify?token=...` → email verification route
+
+---
+
+## 🤝 Credits
+
+- Base layout: [Astro Landing Template](https://github.com/withastro/astro/tree/main/examples/landing-page)
+- Some icons: [Tabler Icons](https://tabler.io/icons)
+- EtchNFT site + project: [Cozyartz Media](https://cozyartz.com)
+
+---
+
+## 📬 Contact
+
+Questions? Want to collab?  
+DM us [@etchnft](https://instagram.com/etchnft) or open an issue here.

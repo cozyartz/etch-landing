@@ -1,0 +1,84 @@
+---
+import Header from "~/components/header.astro";
+import Footer from "~/components/footer.astro";
+import MetaHead from "~/components/meta-head.astro";
+import "@fontsource-variable/inter";
+import "~/styles/index.css";
+
+const title = "EtchNFT — Supporters";
+const description = "Shoutouts to our early backers, friends, and waitlist legends.";
+---
+
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <MetaHead {title} {description} />
+
+  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white">
+    <Header />
+
+    <main class="min-h-screen px-6 py-24 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-[#DB2777] mb-4">
+        Our Supporters
+      </h1>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto mb-6">
+        These legends backed us early and etched their names into the chain.
+      </p>
+      <p id="supporter-count" class="text-sm text-[#41C6BB] mb-12">Loading supporters…</p>
+
+      <div id="supporter-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto mt-12">
+        <!-- Dynamic supporter cards will render here -->
+      </div>
+    </main>
+
+    <Footer />
+
+    <script type="module" is:inline>
+      const grid = document.getElementById("supporter-grid");
+      const counter = document.getElementById("supporter-count");
+
+      fetch("/api/supporters")
+        .then(res => res.json())
+        .then(supporters => {
+          counter.innerText = `🧑‍🚀 ${supporters.length} Supporters & Counting — Join Them`;
+
+          grid.innerHTML = supporters.map((s, i) => {
+            const tier = i < 10 ? "OG Collector 👑"
+              : i < 30 ? "Founding Member 🦄"
+              : "Backer 🪩";
+
+            return `
+              <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-xl p-6 text-left hover:scale-[1.02] transition-transform shadow-xl"
+                   style="animation: fadeUp 0.6s ease-out both; animation-delay: ${i * 80}ms;">
+                <h3 class="text-[#DB2777] font-semibold text-lg">
+                  ${s.ens || s.wallet?.slice(0, 6) + "..." + s.wallet?.slice(-4)}
+                </h3>
+                <p class="text-gray-300 text-sm mt-1">${s.name || "Anonymous"}</p>
+                <span class="inline-block mt-2 px-2 py-1 text-xs font-medium rounded-full bg-[#7F73F7]/20 text-[#7F73F7]">
+                  ${tier}
+                </span>
+                <p class="text-xs text-gray-500 mt-2">${new Date(s.created_at).toLocaleString()}</p>
+              </div>
+            `;
+          }).join("");
+        })
+        .catch(err => {
+          counter.innerHTML = `<span class="text-yellow-500">⚠️ Failed to load supporters.</span>`;
+          console.error("Supporter load error:", err);
+        });
+    </script>
+
+    <style>
+      @keyframes fadeUp {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      #supporter-grid > div {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      #supporter-grid > div:hover {
+        box-shadow: 0 0 20px rgba(127, 115, 247, 0.5);
+      }
+    </style>
+  </body>
+</html>

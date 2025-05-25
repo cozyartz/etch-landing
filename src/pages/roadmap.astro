@@ -1,0 +1,109 @@
+---
+import Header from "~/components/header.astro";
+import Footer from "~/components/footer.astro";
+import MetaHead from "~/components/meta-head.astro";
+import "@fontsource-variable/inter";
+import "~/styles/index.css";
+
+const title = "EtchNFT — Roadmap";
+const description = "From phygital drops to protocol — our journey ahead.";
+
+const roadmap = [
+  {
+    quarter: "Q2 2025",
+    icon: "🚀",
+    items: [
+      "Launch Waitlist + Backer Form",
+      "Mint Flow MVP (testnet)",
+      "Start inscription testing on Solana",
+    ],
+  },
+  {
+    quarter: "Q3 2025",
+    icon: "🛠",
+    items: [
+      "First Phygital Drop Kits",
+      "Launch T-shirt Press & Fulfillment",
+      "On-chain Backer Dashboard",
+    ],
+  },
+  {
+    quarter: "Q4 2025",
+    icon: "🌱",
+    items: [
+      "EtchNFT IRL launch event",
+      "Custom Inscription UI",
+      "‘Memory Gallery’ Launch",
+    ],
+  },
+  {
+    quarter: "Beyond",
+    icon: "💡",
+    items: [
+      "Open-source Drop Protocol",
+      "Composable Phygital NFTs",
+      "Compressed Mint Support",
+    ],
+  },
+];
+---
+
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <MetaHead {title} {description} />
+
+  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white">
+    <Header />
+
+    <main class="min-h-screen px-6 py-24">
+      <div class="text-center max-w-3xl mx-auto mb-20 fade-up">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-white">
+          📍 Roadmap
+        </h1>
+        <p class="text-lg text-gray-400">
+          From our first phygital drops to a permanent mint protocol — here's where EtchNFT is headed.
+        </p>
+      </div>
+
+      <div class="relative">
+        <div class="absolute top-1/2 left-0 w-full h-1 bg-pink-900/20 z-0"></div>
+
+        <div class="relative z-10 flex overflow-x-auto snap-x snap-mandatory gap-8 pb-10 no-scrollbar">
+          {roadmap.map(({ quarter, icon, items }, index) => (
+            <div
+              class="snap-center shrink-0 w-[280px] md:w-[320px] bg-white/5 border border-white/10 rounded-xl backdrop-blur-md px-6 py-8 fade-up"
+              style={`animation-delay: ${100 + index * 100}ms; animation-fill-mode: both; animation-name: fadeUp; animation-duration: 0.6s; animation-timing-function: ease-out;`}
+            >
+              <h3 class="text-pink-500 font-semibold text-xl mb-2">
+                {icon} {quarter}
+              </h3>
+              <ul class="text-gray-300 text-sm leading-relaxed space-y-2">
+                {items.map((item, i) => (
+                  <li key={i}>• {item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+
+    <style>
+      @keyframes fadeUp {
+        0% {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-up {
+        opacity: 0;
+      }
+    </style>
+  </body>
+</html>

@@ -1,122 +1,111 @@
 ---
-import { Icon } from "astro-icon/components";
-import ThemeSwitcher from "~/components/theme-switcher.astro";
-import type { NavItem } from "~/types";
-
-const navItems: Array<NavItem> = [
-  { title: "Features", url: "#features" },
-  { title: "Compatibility", url: "#compatibility" },
-  { title: "Showcase", url: "#showcase" },
-];
+const isNotHome = Astro.url.pathname !== "/";
 ---
 
 <header
   id="page-header"
-  class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
+  class="fixed top-0 z-40 w-full bg-black/80 backdrop-blur border-b border-gray-800 text-white px-6 py-3 shadow-md transition-all"
 >
-  <a class="flex items-center gap-3 hover:!text-default" href="#">
-    <h1 class="sr-only">Astro</h1>
-    <Icon name="logomark" class="size-10" />
-    <Icon name="wordmark" class="hidden h-4 sm:block" />
-  </a>
-  <div>
-    <div class="flex items-center gap-6">
-      <nav class="hidden sm:block">
-        <ul class="flex items-center gap-6">
-          {
-            navItems.map(({ title, url }) => (
-              <li>
-                <a class="text-sm" href={url}>
-                  {title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <button
-        id="open-nav-button"
-        type="button"
-        class="btn sm:hidden"
-        aria-label="Navigation"
-      >
-        <Icon name="mdi:menu" class="size-8" />
-      </button>
-      <ThemeSwitcher />
-    </div>
-    <div id="menu-modal" class="modal hidden" aria-hidden="true">
-      <div class="fixed inset-0 bg-default px-8 py-4 text-default">
-        <div class="space-y-4" role="dialog" aria-modal="true">
-          <header class="text-right">
-            <button
-              id="close-nav-button"
-              type="button"
-              class="btn"
-              aria-label="Close navigation"
+  <div class="mx-auto flex max-w-7xl items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-3 group">
+      <img src="/etchlogo.png" alt="etchNFT logo" class="h-10 w-10 object-contain transition-transform group-hover:scale-105" />
+      <span class="hidden sm:block text-lg font-semibold tracking-tight text-white group-hover:text-pink-400 transition">
+        etchNFT
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden sm:block">
+      <ul class="flex items-center gap-6 text-sm font-medium">
+        {isNotHome && (
+          <li>
+            <a
+              href="/"
+              class="hover:text-pink-400 hover:underline underline-offset-4 transition"
             >
-              <Icon name="mdi:close" class="size-8" />
-            </button>
-          </header>
-          <div class="flex justify-center">
-            <Icon name="logomark" class="size-16" />
-          </div>
-          <nav>
-            <ul class="flex flex-col">
-              {
-                navItems.map(({ title, url }) => (
-                  <li>
-                    <a class="block py-4 text-center text-xl" href={url}>
-                      {title}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </nav>
-        </div>
-      </div>
+              Home
+            </a>
+          </li>
+        )}
+        <li>
+          <a
+            href="/waitlist"
+            class="hover:text-pink-400 hover:underline underline-offset-4 transition"
+          >
+            Waitlist
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Nav Button -->
+    <button
+      id="open-nav-button"
+      type="button"
+      class="sm:hidden inline-flex items-center justify-center p-2 rounded-md border border-white/20 hover:bg-pink-600 transition"
+      aria-label="Open navigation"
+    >
+      <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Modal Menu -->
+  <div id="menu-modal" class="modal hidden" aria-hidden="true">
+    <div class="fixed inset-0 z-50 bg-black px-8 py-6 text-white flex flex-col items-center justify-start">
+      <header class="w-full flex justify-end mb-4">
+        <button
+          id="close-nav-button"
+          type="button"
+          class="p-2 rounded border border-white/20 hover:bg-pink-600 transition"
+          aria-label="Close navigation"
+        >
+          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+
+      <img src="/etchlogo.png" alt="etchNFT logo" class="h-16 w-16 mb-6 object-contain" />
+
+      <nav class="space-y-4 text-lg text-center font-semibold">
+        {isNotHome && (
+          <a href="/" class="block hover:text-pink-400 transition">Home</a>
+        )}
+        <a href="/waitlist" class="block hover:text-pink-400 transition">Join Waitlist</a>
+      </nav>
     </div>
   </div>
 </header>
 
-<script>
-  import MicroModal from "micromodal";
-  import invariant from "tiny-invariant";
+<!-- Mobile Nav Toggle Script -->
+<script is:inline>
+  const menuModal = document.getElementById("menu-modal");
+  const openBtn = document.getElementById("open-nav-button");
+  const closeBtn = document.getElementById("close-nav-button");
 
-  const menuModalId = "menu-modal";
+  if (openBtn && closeBtn && menuModal) {
+    openBtn.addEventListener("click", () => {
+      menuModal.classList.remove("hidden");
+      menuModal.classList.add("block");
+    });
 
-  const header = document.querySelector("#page-header") as HTMLElement;
-  const page = document.documentElement;
-  const menu = document.querySelector(`#${menuModalId} ul`);
-  const openNavButton = document.querySelector("#open-nav-button");
-  const closeNavButton = document.querySelector("#close-nav-button");
+    closeBtn.addEventListener("click", () => {
+      menuModal.classList.add("hidden");
+      menuModal.classList.remove("block");
+    });
 
-  invariant(header, "header should not be null");
-  invariant(menu, "menu should not be null");
-  invariant(openNavButton, "openNavButton should not be null");
-  invariant(closeNavButton, "closeNavButton should not be null");
-
-  const openMenu = () => {
-    MicroModal.show(menuModalId, { disableScroll: true });
-  };
-
-  const closeMenu = () => {
-    MicroModal.close(menuModalId);
-  };
-
-  openNavButton.addEventListener("click", openMenu);
-  closeNavButton.addEventListener("click", closeMenu);
-
-  document.addEventListener("scroll", () => {
-    const d = page.clientHeight - page.scrollTop - header.offsetHeight;
-    header.classList.toggle("fixed-header", d < 0);
-  });
-
-  menu.addEventListener("click", (event) => {
-    if ((event.target as HTMLElement).tagName === "A") {
-      closeMenu();
-    }
-  });
+    menuModal.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menuModal.classList.add("hidden");
+        menuModal.classList.remove("block");
+      });
+    });
+  }
 </script>
 
 <noscript>
@@ -126,13 +115,3 @@ const navItems: Array<NavItem> = [
     }
   </style>
 </noscript>
-
-<style>
-  .fixed-header {
-    @apply fixed bottom-auto top-0;
-    @apply border-default bg-default text-default;
-  }
-  .modal.is-open {
-    @apply block;
-  }
-</style>

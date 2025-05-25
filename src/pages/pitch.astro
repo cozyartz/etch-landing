@@ -1,0 +1,100 @@
+---
+import "@fontsource-variable/inter";
+import Header from "~/components/header.astro";
+import Footer from "~/components/footer.astro";
+import "~/styles/index.css";
+
+const title = "EtchNFT — Pitch Deck";
+const description = "Conservative, grounded overview of the EtchNFT business and funding plan.";
+---
+
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon" href="/favicon.svg" />
+  </head>
+  <body class="h-full overflow-x-hidden bg-black text-white text-base selection:bg-[#DB2777] selection:text-white">
+    <Header />
+    <main class="px-6 py-24 bg-gradient-to-b from-black via-gray-900 to-black">
+      <div class="max-w-4xl mx-auto space-y-16">
+        {[
+          {
+            title: "01 — Vision",
+            content: `etchNFT bridges the gap between physical and digital collectibles.
+We enable users to mint limited-edition, on-chain authenticated physical objects (plaques, apparel, acrylic, and more) using a seamless web2.5 experience — no wallet required, but recommended.`
+          },
+          {
+            title: "02 — Why Now",
+            content: `The market is shifting back to tangible value. As NFTs correct and physical creators regain influence, we're positioning ourselves at the intersection of authenticity, creativity, and blockchain permanence.`
+          },
+          {
+            title: "03 — How It Works",
+            content: `1. Users choose or upload a digital file
+2. We laser-etch the design onto premium physical material (acrylic, wood, metal)
+3. It is then paired with a mint: one on-chain token with metadata + media
+4. The user receives both the object and the token via email or wallet`
+          },
+          {
+            title: "04 — Tech Stack",
+            content: `• Astro (for blazing-fast static & SSR rendering)
+• React (for interactive components)
+• Tailwind CSS (design system)
+• Cloudflare Workers + D1 (scalable, serverless infra)
+• On-chain minting via Zora and optional Solana NFT support`
+          },
+          {
+            title: "05 — Traction",
+            content: `• Owned and equipped physical production space (laser, press, materials)
+• 3 test clients for etched collectibles (pending drop)
+• ~$14K worth of material stock on hand`
+          },
+          {
+            title: "06 — Revenue Model",
+            content: `• $25–75 per etched collectible
+• Optional subscription tier for custom drops
+• Digital/physical bundle pre-orders (merch & art collabs)`
+          },
+          {
+            title: "07 — Projections",
+            content: `• Year 1: $7.5K–12.5K revenue through 1 drop/month (~50–100 units)
+• Year 2: $30K+ w/ collabs, subscriptions, and expanded marketing
+• Conservative, based on direct outreach only`
+          },
+          {
+            title: "08 — Team",
+            content: `• Andrea Cozart-Lundin — founder, multimedia developer, and laser operator.
+Backed by a makerspace and years of digital + physical product delivery experience.
+• Amy Cozart-Lundin — co-founder, product designer, and laser operator.
+Backed by an M.Ed and years of digital + physical product delivery experience.`
+          },
+          {
+            title: "09 — Ask",
+            content: `We're seeking $35,000 to:
+• Fund initial drop scaling and logistics
+• Expand production capacity and automation
+• Launch branded storefront with drop scheduling
+• Run 6-month outreach + affiliate campaign`
+          }
+        ].map((section, i) => (
+          <div class="border-l-4 border-[#DB2777] pl-4 transform opacity-0 translate-y-6 motion-safe:transition-all motion-safe:duration-700 motion-safe:ease-out" style={`animation: fadeInUp 0.5s ease-out ${i * 120}ms forwards`}>
+            <h2 class="text-3xl font-bold mb-2">{section.title}</h2>
+            <p class="text-lg text-gray-300 whitespace-pre-line">{section.content}</p>
+          </div>
+        ))}
+      </div>
+    </main>
+    <Footer />
+  </body>
+  <style>
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</html>
