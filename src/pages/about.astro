@@ -6,51 +6,54 @@ import Starfield from "~/components/starfield.astro";
 import "@fontsource-variable/inter";
 import "~/styles/index.css";
 
-const title = "Why EtchNFT Exists";
-const description = "The philosophy, the people, and the path ahead for EtchNFT.";
+const title = "EtchNFT — About";
+const description = "Why we’re here. What we believe. What we’re building.";
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
   <MetaHead {title} {description} />
 
-  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white relative overflow-hidden">
+  <body class="bg-black text-white font-sans selection:bg-pink-600 selection:text-white overflow-x-hidden relative">
     <Header />
     <Starfield />
 
-    <!-- Decorative Star Graphic -->
-    <img src="/star.png" alt="Star" class="absolute top-12 right-8 w-40 opacity-10 pointer-events-none z-10" />
+    <!-- Floating decorative star -->
+    <img
+      src="/star.png"
+      alt="star"
+      class="absolute top-12 right-8 w-36 opacity-10 z-10 pointer-events-none"
+    />
 
     <main class="relative z-20 px-6 py-32 max-w-5xl mx-auto text-center">
-      <!-- Headline -->
       <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-[#DB2777] mb-6">
         Why EtchNFT Exists
       </h1>
       <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-12">
-        We started EtchNFT to capture something real. A moment. A message. A memory —
+        We started EtchNFT to capture something real. A moment. A message. A memory — 
         <span class="text-[#41C6BB]">minted permanently</span> and wrapped in culture you can actually hold.
       </p>
 
       <!-- Ethos -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left mb-24">
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left mb-24">
         <div>
-          <h3 class="text-[#DB2777] font-semibold mb-2">🔥 On-Chain > Cloud</h3>
+          <h3 class="text-[#DB2777] font-semibold mb-2">🧱 On-Chain > Cloud</h3>
           <p class="text-sm text-gray-400">
             When it matters, it should be permanent. Our inscriptions live on public ledgers — not private servers.
           </p>
         </div>
         <div>
-          <h3 class="text-[#41C6BB] font-semibold mb-2">🎨 Craft > Mass</h3>
+          <h3 class="text-[#41C6BB] font-semibold mb-2">🛠 Craft > Mass</h3>
           <p class="text-sm text-gray-400">
-            Each drop is handcrafted, pressed, etched, or assembled by real hands. One at a time.
+            Each drop is handcrafted. Pressed. Etched. One at a time.
           </p>
         </div>
         <div>
           <h3 class="text-[#7F73F7] font-semibold mb-2">🔮 Expression > Speculation</h3>
           <p class="text-sm text-gray-400">
-            We’re not chasing flips. We’re minting meaning — making permanent artifacts that matter.
+            This isn’t about flipping. It’s about making artifacts that actually mean something.
           </p>
         </div>
-      </div>
+      </section>
 
       <!-- Quote -->
       <blockquote class="italic text-pink-500 text-lg mb-20">
@@ -58,42 +61,18 @@ const description = "The philosophy, the people, and the path ahead for EtchNFT.
         <footer class="text-white/50 mt-2">— Cozyartz / EtchNFT Core</footer>
       </blockquote>
 
-      <!-- Team Snapshot -->
-      <section class="mb-32">
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">🧑‍🚀 Who’s Behind It?</h2>
-        <p class="text-gray-400 max-w-xl mx-auto">
-          EtchNFT is a collective of designers, developers, and artists who believe physical expression still matters
-          in a digital world. We're backed by community and built in public.
-        </p>
-      </section>
-
-      <!-- What's Coming Next -->
-      <section class="mb-32">
-        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">📦 What's Coming</h2>
-        <div class="grid gap-8 md:grid-cols-3 text-left">
-          <div class="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
-            <h3 class="text-[#DB2777] font-semibold mb-2">Drop Kits</h3>
-            <p class="text-sm text-gray-300">Limited-edition physical drops that connect back on-chain.</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
-            <h3 class="text-[#7F73F7] font-semibold mb-2">Dashboard</h3>
-            <p class="text-sm text-gray-300">See your backer history, unlock perks, and track the journey.</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
-            <h3 class="text-[#41C6BB] font-semibold mb-2">Mint Protocol</h3>
-            <p class="text-sm text-gray-300">Eventually open-source. Designed to help anyone launch physical artifacts.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <div class="text-center mt-16">
-        <a href="/waitlist" class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-lg transition shadow-lg">
+      <!-- CTA Button -->
+      <div class="text-center">
+        <a
+          href="/waitlist"
+          class="inline-block bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-lg transition shadow-lg"
+        >
           Join the Waitlist
         </a>
       </div>
     </main>
 
+    <!-- Footer w/ Gradient and Instagram Link -->
     <Footer />
   </body>
 </html>
