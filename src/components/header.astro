@@ -1,5 +1,16 @@
 ---
-const isNotHome = Astro.url.pathname !== "/";
+---
+import star from "~/assets/star.png";
+import Header from "~/components/header.astro";
+import Footer from "~/components/footer.astro";
+import MetaHead from "~/components/meta-head.astro";
+import "@fontsource-variable/inter";
+import "~/styles/index.css";
+
+const title = "EtchNFT — About";
+const description = "Why we’re here. What we believe. What we’re building.";
+---
+
 ---
 
 <header
@@ -40,7 +51,7 @@ const isNotHome = Astro.url.pathname !== "/";
       class="sm:hidden inline-flex items-center justify-center p-1 rounded-md border border-white/20 glow-button transition"
       aria-label="Open navigation"
     >
-      <img src="/star.png" alt="Open menu" class="h-8 w-8 object-contain" />
+      <img src="/assets/star.png" alt="Open menu" class="h-8 w-8 object-contain" />
     </button>
   </div>
 
