@@ -1,0 +1,7 @@
+Contact: mailto:security@cozyartz.com
+Contact: https://github.com/etchnft/etchnft-landing/security/advisories/new
+Expires: 2026-07-06T00:00:00.000Z
+Acknowledgments: https://docs.etchnft.com/security/acknowledgments
+Preferred-Languages: en
+Canonical: https://etchnft.com/.well-known/security.txt
+Policy: https://docs.etchnft.com/security/policy

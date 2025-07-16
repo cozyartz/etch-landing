@@ -1,0 +1,35 @@
+---
+// src/components/Ticker.astro
+import { useEffect, useState } from "preact/hooks";
+
+const [tokens, setTokens] = useState([]);
+
+useEffect(() => {
+  fetch("/api/ticker")
+    .then((res) => res.json())
+    .then(setTokens)
+    .catch(console.error);
+}, []);
+---
+
+<div class="w-full overflow-hidden bg-black border-t border-pink-800">
+  <div class="ticker-track animate-scroll whitespace-nowrap py-2 flex gap-10">
+    {tokens.map((token) => (
+      <span class="text-white px-4 py-1 rounded-full bg-black shadow-[0_0_10px_#DB2777]">
+        {token.symbol}: ${token.price}
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  @keyframes scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+
+</style>

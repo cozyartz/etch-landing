@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Important pages
+Allow: /miniapp
+Allow: /about
+Allow: /waitlist
+Allow: /roadmap
+
+# Block admin and API routes
+Disallow: /API/
+Disallow: /_astro/
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://etchnft.com/sitemap.xml
+
+# Crawl delay (optional - be nice to servers)
+Crawl-delay: 1

@@ -1,0 +1,13 @@
+{
+  "name": "EtchNFT",
+  "version": "1.0.0",
+  "iconUrl": "https://etchnft.com/etchlogo.png",
+  "splashImageUrl": "https://etchnft.com/etchlogo.png",
+  "splashBackgroundColor": "#DB2777",
+  "homeUrl": "https://etchnft.com/miniapp",
+  "requiredChains": [
+    "eip155:1",
+    "eip155:8453",
+    "solana:mainnet"
+  ]
+}

@@ -10,17 +10,30 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write \"**/*.{astro,ts,js,css}\"",
-    "clean": "rimraf dist .astro node_modules"
+    "clean": "rimraf dist .astro node_modules",
+    "docs:dev": "cd docs && pnpm dev",
+    "docs:build": "cd docs && pnpm build",
+    "docs:preview": "cd docs && pnpm preview"
   },
   "dependencies": {
+    "@anthropic-ai/claude-code": "^1.0.44",
     "@astrojs/cloudflare": "^12.5.3",
     "@astrojs/react": "^4.3.0",
+    "@astrojs/starlight": "^0.34.4",
+    "@coinbase/cdp-sdk": "^1.22.0",
+    "@farcaster/mini-app-solana": "^1.0.4",
+    "@farcaster/miniapp-sdk": "^0.1.4",
+    "@farcaster/miniapp-wagmi-connector": "^1.0.0",
     "@fontsource-variable/inter": "^5.1.0",
+    "@solana/wallet-adapter-base": "^0.9.27",
+    "@solana/wallet-adapter-react": "^0.15.39",
+    "@solana/web3.js": "^1.98.2",
     "framer-motion": "^12.12.2",
     "micromodal": "^0.4.10",
     "sharp": "^0.33.5",
     "tailwindcss": "^3.4.15",
-    "tiny-invariant": "^1.3.3"
+    "tiny-invariant": "^1.3.3",
+    "wagmi": "^2.15.6"
   },
   "devDependencies": {
     "@astrojs/tailwind": "^5.1.2",

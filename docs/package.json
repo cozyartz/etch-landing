@@ -1,0 +1,16 @@
+{
+  "name": "etchnft-docs",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev --config=../astro.config.docs.mjs",
+    "start": "astro dev --config=../astro.config.docs.mjs",
+    "build": "astro build --config=../astro.config.docs.mjs",
+    "preview": "astro preview --config=../astro.config.docs.mjs"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.34.4",
+    "astro": "^5.8.0"
+  }
+}

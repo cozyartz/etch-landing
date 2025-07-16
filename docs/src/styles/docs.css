@@ -1,0 +1,140 @@
+/* EtchNFT Documentation Custom Styles */
+
+:root {
+  /* Brand colors */
+  --sl-color-accent-low: #db277720;
+  --sl-color-accent: #db2777;
+  --sl-color-accent-high: #db2777;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #f8fafc;
+  --sl-color-gray-2: #e2e8f0;
+  --sl-color-gray-3: #cbd5e1;
+  --sl-color-gray-4: #94a3b8;
+  --sl-color-gray-5: #64748b;
+  --sl-color-gray-6: #475569;
+  --sl-color-black: #0f172a;
+  
+  /* EtchNFT brand gradient */
+  --etch-gradient: linear-gradient(135deg, #DB2777, #7F73F7);
+  --etch-gradient-subtle: linear-gradient(135deg, #db277720, #7f73f720);
+}
+
+/* Dark theme overrides */
+[data-theme='dark'] {
+  --sl-color-accent-low: #db277740;
+  --sl-color-accent: #db2777;
+  --sl-color-accent-high: #db2777;
+  --sl-color-white: #0f172a;
+  --sl-color-gray-1: #1e293b;
+  --sl-color-gray-2: #334155;
+  --sl-color-gray-3: #475569;
+  --sl-color-gray-4: #64748b;
+  --sl-color-gray-5: #94a3b8;
+  --sl-color-gray-6: #cbd5e1;
+  --sl-color-black: #f8fafc;
+}
+
+/* Custom hero styling */
+.hero {
+  background: var(--etch-gradient-subtle);
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Enhanced code blocks */
+.expressive-code {
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Card enhancements */
+.sl-card {
+  background: var(--etch-gradient-subtle);
+  border: 1px solid var(--sl-color-gray-3);
+  transition: all 0.2s ease;
+}
+
+.sl-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
+}
+
+/* Button styling */
+.sl-link-button {
+  background: var(--etch-gradient);
+  border: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.sl-link-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgb(219 39 119 / 0.4);
+}
+
+/* Navigation enhancements */
+.sidebar-content {
+  background: var(--etch-gradient-subtle);
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--sl-color-black);
+  font-weight: 700;
+}
+
+/* Emoji sizing in headings */
+h1 .emoji, h2 .emoji, h3 .emoji {
+  font-size: 1.2em;
+  margin-right: 0.5rem;
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.new {
+  background: #10b981;
+  color: white;
+}
+
+.status-badge.beta {
+  background: #f59e0b;
+  color: white;
+}
+
+.status-badge.deprecated {
+  background: #ef4444;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero {
+    margin: 0 -1rem 2rem -1rem;
+    border-radius: 0;
+  }
+  
+  .sl-card {
+    margin: 0 -0.5rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .hero,
+  .sl-card {
+    background: none !important;
+    box-shadow: none !important;
+  }
+}

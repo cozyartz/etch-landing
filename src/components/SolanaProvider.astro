@@ -1,0 +1,13 @@
+---
+// Solana Provider component for Farcaster integration
+const solanaEndpoint = import.meta.env.HELIUS_API_KEY ? 
+  `https://mainnet.helius-rpc.com/?api-key=${import.meta.env.HELIUS_API_KEY}` : 
+  'https://api.mainnet-beta.solana.com';
+---
+
+<script type="module" define:vars={{ solanaEndpoint }}>
+  import { FarcasterSolanaProvider } from '@farcaster/mini-app-solana';
+  
+  // This script runs on the client to set up Solana provider
+  window.solanaEndpoint = solanaEndpoint;
+</script>
